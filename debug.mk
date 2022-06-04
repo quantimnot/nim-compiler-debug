@@ -34,7 +34,8 @@ nim_gdb.so: nim_gdb.nim
 	nim c --app:lib --threads:on --out:$(@) nim_gdb.nim
 
 .vscode:
-	ln -s .debug/.vscode/ $(@)
+	mkdir -p .vscode; cd .vscode && \
+	ln -sf ../.debug/vscode/* .
 
 config.nims:
 	ln -s .debug/nim_$(@) $(@)
