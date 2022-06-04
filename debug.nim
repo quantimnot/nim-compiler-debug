@@ -23,3 +23,8 @@ var debuggeeTarget* {.exportc, dynlib.} = getEnv("NIM_DEBUGGEE")
   ## module name that we want to debug the compilation of
 var debuggeeTargetLine* {.exportc, dynlib.} = getEnv("NIM_DEBUGGEE_LINE", "1").parseInt()
   ## module line that we want to debug the compilation of
+
+template enableDebugHooks* =
+  when compileOption "debugger":
+    if isCompilerDebug():
+      enteringDebugSection()
