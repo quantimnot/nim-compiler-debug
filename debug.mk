@@ -1,3 +1,5 @@
+# Run this makefile from the Nim repo root.
+
 nim = nim
 testcase = r --mm:arc t.nim
 nim_debug_opts = \
@@ -31,7 +33,16 @@ nimcache/nim.callgrind.svg: nimcachenimcache/nim.callgrind.log
 nim_gdb.so: nim_gdb.nim
 	nim c --app:lib --threads:on --out:$(@) nim_gdb.nim
 
-.PHONEY: FORCE memtest callgrind
+.vscode:
+	ln -s .debug/.vscode/ $(@)
+
+config.nims:
+	ln -s .debug/nim_$(@) $(@)
+
+.PHONEY: FORCE memtest callgrind prepare
 FORCE:
 memtest: nimcache/nim.memtest.log
 callgrind: nimcache/nim.callgrind.log
+
+# Link and patch some files to make using these tools easier.
+prepare: .vscode config.nims

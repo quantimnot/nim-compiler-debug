@@ -1,0 +1,79 @@
+// https://code.visualstudio.com/docs/getstarted/settings#_default-settings
+// https://code.visualstudio.com/docs/editor/variables-reference
+{
+    "files.Exclude": {
+        "**/.git": false
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/nimcache": true,
+        "**/csources*": true,
+        "**/testresults": true
+    },
+    "files.watcherExclude": {
+        "**/.git": true,
+        "**/nimcache": true,
+        "**/csources*": true,
+        "**/testresults": true
+    },
+    "nim.licenseString": "",
+    "nim.lintOnSave": false,
+    "nim.nimprettyIndent": 2,
+    "nim.enableNimsuggest": false,
+    "nim.provider": "lsp",
+    "nim.projectMapping": {},
+    "nim.project": [
+        "compiler/nim.nim"
+    ],
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Debug current Nim file",
+                "preLaunchTask": "nim build debug",
+                "preRunCommands": [
+                    "command source .debug/lldbinit"
+                ],
+                "type": "lldb",
+                "request": "launch",
+                "program": "${relativeFileDirname}/${fileBasenameNoExtension}",
+                "cwd": "${relativeFileDirname}"
+            },
+            {
+                "name": "Debug Nim Compiler (lldb)",
+                "preLaunchTask": "temp",
+                "preRunCommands": [
+                    "command source .debug/lldbinit"
+                ],
+                "type": "lldb",
+                "request": "launch",
+                "program": "bin/nim_temp",
+                "args": [
+                    "c",
+                    "${relativeFile}"
+                ],
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "NIM_DEBUGGEE": "${fileBasenameNoExtension}",
+                    "NIM_DEBUGGEE_LINE": "${lineNumber}"
+                }
+            },
+            {
+                "name": "Debug Nim Compiler (gdb)",
+                "preLaunchTask": "temp",
+                "autorun": [
+                    "source .debug/gdbinit"
+                ],
+                "type": "gdb",
+                "request": "launch",
+                "target": "bin/nim_temp",
+                "cwd": "${workspaceRoot}",
+                "arguments": "c ${relativeFile}",
+                "env": {
+                    "NIM_DEBUGGEE": "${fileBasenameNoExtension}",
+                    "NIM_DEBUGGEE_LINE": "${lineNumber}"
+                }
+            }
+        ]
+    }
+}

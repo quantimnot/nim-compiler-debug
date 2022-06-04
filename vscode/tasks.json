@@ -1,0 +1,27 @@
+{
+  // https://code.visualstudio.com/docs/editor/tasks
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "temp",
+          "type": "shell",
+          "command": ".debug/mk",
+          "problemMatcher": [],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          }
+      },
+      {
+          "label": "build debug",
+          "type": "shell",
+          "command": "make ${relativeFileDirname}/${fileBasenameNoExtension}",
+          "problemMatcher": []
+      },
+      {
+          "label": "run doc",
+          "type": "shell",
+          "command": "nim -r doc ${relativeFile}"
+      }
+  ]
+}
