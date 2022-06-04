@@ -16,10 +16,11 @@
         "**/csources*": true,
         "**/testresults": true
     },
+    "nim.nimExec": "bin/nim",
     "nim.licenseString": "",
-    "nim.lintOnSave": false,
+    "nim.lintOnSave": true,
     "nim.nimprettyIndent": 2,
-    "nim.enableNimsuggest": false,
+    "nim.enableNimsuggest": true,
     "nim.provider": "nimsuggest",
     "nim.projectMapping": {},
     "nim.project": [
