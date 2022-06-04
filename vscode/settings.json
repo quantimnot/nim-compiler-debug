@@ -20,7 +20,7 @@
     "nim.lintOnSave": false,
     "nim.nimprettyIndent": 2,
     "nim.enableNimsuggest": false,
-    "nim.provider": "lsp",
+    "nim.provider": "nimsuggest",
     "nim.projectMapping": {},
     "nim.project": [
         "compiler/nim.nim"
