@@ -1,8 +1,8 @@
 // https://code.visualstudio.com/docs/getstarted/settings#_default-settings
 // https://code.visualstudio.com/docs/editor/variables-reference
 {
-    "files.Exclude": {
-        "**/.git": false
+    "files.exclude": {
+        // "**/.git": false
     },
     "search.exclude": {
         "**/.git": true,

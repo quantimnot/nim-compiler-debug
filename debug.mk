@@ -9,9 +9,14 @@ nim_debug_opts = \
 	--styleCheck:off \
 	-d:nimDebug --debugger:native -d:nimDebugUtils -d:debug \
 	-d:leanCompiler -d:nimDebugUtils -d:stacktraceMsgs -d:nimCompilerStacktraceHints
+nim_fast_opts = \
+	-d:danger --stacktrace:off --panics:on --passC:"-flto -march=native" --passL:"-flto"
 
 bin/nim_temp: FORCE
 	$(nim) c --out:$(@) $(nim_debug_opts) compiler/nim
+
+bin/nim_fast: FORCE
+	$(nim) c --out:$(@) $(nim_fast_opts) compiler/nim
 
 bin/nim_memtest: FORCE
 	$(nim) c --out:$(@) -d:leanCompiler --debugger:native -d:useMalloc --stacktrace:on -d:release compiler/nim
